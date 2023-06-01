@@ -65,15 +65,14 @@ public class BannerHistoricoService {
             pageable = PageRequest.of(filtro.getPagina(), filtro.getItensPorPagina());
         }
 
+        Page<BannerHistoricoEntity> banners = null;
         if(filtro.getTitulo() != null){
-            Page<BannerHistoricoEntity> banners =  bannerHistoricoRepository.findByFilterAndTitle(pageable, filtro.getTitulo());
-            banners.forEach(banner -> banner.setTelas(findByIdBanner(banner.getId())));
-            return banners;
+            banners =  bannerHistoricoRepository.findByFilterAndTitle(pageable, filtro.getTitulo());
         }
-        Page<BannerHistoricoEntity> banners = bannerHistoricoRepository.findByFilter(pageable);
+        else{
+            banners = bannerHistoricoRepository.findByFilter(pageable);
+        }
         banners.forEach(banner -> banner.setTelas(findByIdBanner(banner.getId())));
         return banners;
     }
-
-
 }
