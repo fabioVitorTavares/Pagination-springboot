@@ -26,7 +26,12 @@ public class BannerHistoricoApiResource {
     }
 
     @PostMapping("/findByFilter")
-    public ResponseEntity<Page<BannerHistoricoEntity>> findByFilter(@RequestBody FiltroBannerHistorico filtro){
+    public ResponseEntity<Page<BannerHistoricoEntity>> findByFilter(@RequestBody FiltroBannerHistorico filtro) throws Exception{
         return ResponseEntity.ok().body(bannerHistoricoService.findByFilter(filtro));
+    }
+
+    @GetMapping("/telas/list/{id}")
+    public ResponseEntity<List<String>> findByIdBanner(@PathVariable Integer id){
+        return ResponseEntity.ok().body(bannerHistoricoService.findByIdBanner(id));
     }
 }

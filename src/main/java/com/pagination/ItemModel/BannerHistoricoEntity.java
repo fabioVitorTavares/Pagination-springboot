@@ -3,11 +3,13 @@ package com.pagination.ItemModel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -53,4 +55,7 @@ public class BannerHistoricoEntity {
 
     @Column(name = "ativo")
     private  Boolean ativo;
+
+    @Transient
+    private List<String> telas;
 }
